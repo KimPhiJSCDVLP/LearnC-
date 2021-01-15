@@ -563,5 +563,170 @@ namespace Indexers
             }
         }
 
+        static void PlusString()
+        {
+            string str = "";
+            for (int i = 1; i < 10; i++)
+            {
+                str = i.ToString() + " " + str;
+            }
+            Console.WriteLine(str);
+        }
+
+        //Binh phuong gia tri 
+        static void BinhPhuong()
+        {
+            Console.Write("Nhap vao 1 so a =");
+            string str = Console.ReadLine();
+            int a = int.Parse(str);
+            Console.WriteLine("Binh phuong gia tri vua nhap la {0}", a * a);
+        }
+
+        //Phuong trinh bac hai
+        static void GiaiPhuongTrinh()
+        {
+            Console.Write("Nhap a =");
+            int a = int.Parse(Console.ReadLine());
+            Console.Write("Nhap b =");
+            int b = int.Parse(Console.ReadLine());
+            Console.Write("Nhap c =");
+            int c = int.Parse(Console.ReadLine());
+            double d = b * b - 4 * a * c;
+            string kq = "";
+            kq = d < 0 ? "Phuong trinh vo nghiem" :
+                (
+                    d == 0 ? "Nghiem Kep: " + ((-b) / (2 * a)).ToString() :
+                    string.Format("2 Nghiem X1 ={0} X2={1}", (-b - Math.Sqrt(d)) / (2 * a), (-b + Math.Sqrt(d)) / (2 * a))
+                );
+            Console.WriteLine(kq);
+            Console.ReadKey();
+        }
+
+        //De mo array 
+        static void DemoArray()
+        {
+            int[] a = new int[] { 14, 2, 21, 54, 6, 7 };
+            int n = a.Length;
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write("{0} ", a[i]);
+            }
+            Console.WriteLine();
+            foreach (int so in a)
+            {
+                Console.Write(so.ToString() + " ");
+            }
+            Console.WriteLine();
+            string str = "abcdefghi1234@#";
+            foreach (char c in str)
+            {
+                Console.WriteLine(c);
+            }
+        }
+
+        //Handle string 
+        static void HandleString()
+        {
+            string str = "abcdefghijklmnopqrstuvxyz";
+            int dd = str.Length;
+            Console.WriteLine("chuoi {0} co do dai la {1}", str, dd);
+            string s1 = str.Substring(5);
+            Console.WriteLine("chuoi con tu vi tri thu 5 la {0}", s1);
+            string s2 = str.Substring(5, 3);
+            Console.WriteLine("chuoi con tu vi tri thu 5 lay tiep 3 ky tu la {0}", s2);
+            string s3 = str.Replace("uv", "12345");
+            Console.WriteLine("chuoi thay the \"uv\" boi \"12345\" la {0}", s3);
+            Console.WriteLine("Cat chuoi ban dau boi ky tu 'k' va ky tu 't' thi thu duoc mang co:");
+            string[] arr = str.Split('k', 't');
+            foreach (string s in arr) Console.WriteLine(s);
+            int pos = str.IndexOf("klmn");
+            Console.WriteLine("Chuoi \"klmn\" xuat hien o vi tri thu {0}", pos);
+        }
+
+        //Handle Name Employee
+        static void HandleNameEmployee()
+        {
+            string str = "   Vu   Thi  Quoc    Trung    ";
+            str = str.Trim();
+            while (str.Contains("  "))
+                str = str.Replace("  ", " ");
+            string[] arr = str.Split(' ');
+            int n = arr.Length - 1;
+            string Ten = arr[n];
+            for (int i = 0; i < n; i++)
+                Ten = Ten + arr[i][0].ToString();
+            Console.WriteLine(Ten);
+        }
+
+
+        //khai bao struct
+        struct newStruct
+        {
+            private int num;
+
+            public int n
+            {
+                get
+                {
+                    return num;
+                }
+                set
+                {
+                    if (value < 50)
+                        num = value;
+                }
+            }
+            public void clsMethod()
+            {
+                Console.WriteLine("\nGia tri duoc luu giu la: {0}\n", num);
+            }
+        }
+
+        static void KhaiBaoStruct()
+        {
+            Console.Write("\nKhai bao struct co thuoc tinh, phuong thuc va truong private trong C#:\n");
+            Console.Write("----------------------------------------------------------------------\n");
+            newStruct myInstance = new newStruct();
+            myInstance.n = 15;
+            myInstance.clsMethod();
+        }
+
+        //Bài tập C#: Tìm phần tử lớn nhất, nhỏ nhất trong mảng: Viết chương trình C# để nhập một mảng, sau đó tìm phần tử lớn nhất và phần tử nhỏ nhất và in kết quả trên màn hình.
+
+        static void TimPhanTuMax()
+        {
+            int[] arr1 = new int[100];
+            int i, mx, mn, n;
+            Console.Write("\nTim phan tu lon nhat, phan tu nho nhat trong mang trong C#:\n");
+            Console.Write("-----------------------------------------------------------\n");
+
+            Console.Write("Nhap so phan tu can luu giu trong mang: ");
+            n = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Nhap {0} phan tu vao trong mang:\n", n);
+            for (i = 0; i < n; i++)
+            {
+                Console.Write("Phan tu - {0}: ", i);
+                arr1[i] = Convert.ToInt32(Console.ReadLine());
+            }
+
+            mx = arr1[0];
+            mn = arr1[0];
+
+            for (i = 1; i < n; i++)
+            {
+                if (arr1[i] > mx)
+                {
+                    mx = arr1[i];
+                }
+
+                if (arr1[i] < mn)
+                {
+                    mn = arr1[i];
+                }
+            }
+            Console.Write("Phan tu lon nhat trong mang la: {0}\n", mx);
+            Console.Write("Phan tu nho nhat trong mang la: {0}\n\n", mn);
+        }
     }
 }
